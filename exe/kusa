@@ -1,3 +1,17 @@
 #!/usr/bin/env ruby
 
 require "kusa"
+require 'date'
+require 'optparse'
+
+params = ARGV.getopts("", "from:")
+from_date = if params["from"]
+              DateTime.parse(params["from"])
+            else
+              DateTime.now - 365
+            end
+
+(from_date..DateTime.now).each do |date|
+  system({"GIT_COMMITTER_DATE" => date.to_s},
+         "git", "commit", "--allow-empty", "--date=#{date}", "-m 'kusa: #{date}'")
+end
