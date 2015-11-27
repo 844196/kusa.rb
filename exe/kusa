@@ -34,7 +34,7 @@ class KusaCLI < Thor
 
   def commit(date=DateTime.now)
     system({"GIT_COMMITTER_DATE" => date.to_s},
-           "git", "commit", "--allow-empty", "--date=#{date}", "-m 'kusa.rb: #{date}'")
+           "git", "commit", "--allow-empty", "--date=#{date}", "-m kusa.rb: #{date}")
   end
 end
 
