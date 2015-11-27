@@ -1,3 +1,9 @@
+## Usage
+
+```shellsession
+$ kusa help www
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/844196/kusa.rb/fork )
