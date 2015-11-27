@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['844196@gmail.com']
 
   spec.summary       = 'www'
-  spec.description   = '草生やすな'
+  spec.description   = '牧草地を増やす牧場経営シミュレーション'
   spec.homepage      = 'http://github.com/844196/kusa.rb'
   spec.license       = 'MIT'
 
