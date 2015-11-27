@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/wiki/844196/kusa.rb/images/www.png">
   <br>
-  牧場経営シミュレーションです
+  牧草地を増やす牧場経営シミュレーションです
 </p>
 
 ## Installation
@@ -16,6 +16,14 @@ $ gem specific_install -l https://github.com/844196/kusa.rb
 ```shellsession
 $ kusa help www
 ```
+
+## VS.
+
+- 4148/greenhat (<https://github.com/4148/greenhat>)
+    - 作ってから先人のスクリプトを見つける屑
+    - ユーザネームが`844196`と似てる（謎の親近感）
+- sasairc/hansoku.md (<https://gist.github.com/sasairc/8ca23a284d2558ed7150>)
+    - 「昨日コミットするの忘れてた＾〜」という方はこっちの方が楽です
 
 ## Contributing
 
