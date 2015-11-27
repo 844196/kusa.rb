@@ -8,6 +8,7 @@ require 'thor'
 class KusaCLI < Thor
   package_name 'kusa'
   default_command :www
+  option 'max-commit-per-day', :type=> :numeric, :desc => 'A natural number of 2 or more', :default => 10
   map %w(-v --version) => :version
 
   desc 'www [--from=FROM-DATE] [--to=TO-DATE]', 'lol'
@@ -19,7 +20,7 @@ class KusaCLI < Thor
     to = options['to'] ? Time.parse(options['to']) : now
 
     (from.to_datetime..to.to_datetime).each do |date|
-      1.upto(rand(2..5)) {|i| commit(date) }
+      1.upto(rand(2..options['max-commit-per-day'])) {|i| commit(date) }
     end
   end
 
