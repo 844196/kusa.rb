@@ -2,16 +2,39 @@
 
 require "kusa"
 require 'date'
-require 'optparse'
+require 'time'
+require 'thor'
 
-params = ARGV.getopts("", "from:")
-from_date = if params["from"]
-              DateTime.parse(params["from"])
-            else
-              DateTime.now - 365
-            end
+class KusaCLI < Thor
+  package_name 'kusa'
+  default_command :www
+  map %w(-v --version) => :version
 
-(from_date..DateTime.now).each do |date|
-  system({"GIT_COMMITTER_DATE" => date.to_s},
-         "git", "commit", "--allow-empty", "--date=#{date}", "-m 'kusa: #{date}'")
+  desc 'www [--from=FROM-DATE] [--to=TO-DATE]', 'lol'
+  method_option 'from', :banner => 'FROM-DATE', :desc => 'Processing start date'
+  method_option 'to',   :banner => 'TO-DATE',   :desc => 'Processing end date'
+  def www
+    now = Time.now
+    from = options['from'] ? Time.parse(options['from']) : now - 60*60*24*365
+    to = options['to'] ? Time.parse(options['to']) : now
+
+    (from.to_datetime..to.to_datetime).each do |date|
+      1.upto(rand(2..5)) {|i| commit(date) }
+    end
+  end
+
+  desc 'version', 'Print version'
+  def version
+    STDOUT.puts Kusa::VERSION
+    exit 0
+  end
+
+  private
+
+  def commit(date=DateTime.now)
+    system({"GIT_COMMITTER_DATE" => date.to_s},
+           "git", "commit", "--allow-empty", "--date=#{date}", "-m 'kusa.rb: #{date}'")
+  end
 end
+
+KusaCLI.start(ARGV)
